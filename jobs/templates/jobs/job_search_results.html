@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search Results - JobBoard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white; 
+            margin: 0;
+            padding: 0;
+            color: #000; 
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .logo {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .job-listings {
+            margin: 20px;
+        }
+        .job-listing {
+            background-color: #333;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .job-listing h3, .job-listing p {
+            color: #fff; 
+        }
+        .apply-form {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #555;
+        }
+        .apply-form input[type=file] {
+            margin-right: 10px;
+        }
+        .apply-form button {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JobBoard</div>
+    </nav>
+    <div class="job-listings">
+        {% for job in job_descriptions %}
+        <div class="job-listing">
+            <h3>{{ job.title }}</h3>
+            <p>{{ job.description }}</p>
+            <div class="apply-form">
+                <form method="post" enctype="multipart/form-data" action="{% url 'job_search' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="job_title" value="{{ job.title }}">
+                    <input type="hidden" name="job_description" value="{{ job.description }}">
+                    <input type="file" name="resume" required>
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

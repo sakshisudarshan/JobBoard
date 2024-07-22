@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - JobBoard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            color: #000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .logo {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            background-color: #f0f0f0;
+            color: black;
+        }
+        .hero .content {
+            text-align: center;
+        }
+        .hero .content h1 {
+            font-size: 64px;
+            margin: 0;
+        }
+        .hero .content p {
+            font-size: 24px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button-container a, .button-container button {
+            margin: 0 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .button-container .search-btn {
+            background-color: green;
+        }
+        .button-container .post-btn {
+            background-color: #007bff;
+        }
+        .button-container .search-btn:hover {
+            background-color: darkgreen;
+        }
+        .button-container .post-btn:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JobBoard</div>
+    </nav>
+
+    <div class="hero">
+        <div class="content">
+            <h1>Largest Job Site In The World</h1>
+            <p>We have <span style="color: #ff5722;">200,000</span> great job offers you deserve!</p>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <a href="{% url 'employer_search' %}" class="search-btn">Search for Applications</a>
+        <a href="{% url 'post_job' %}" class="post-btn">Post a Job</a>
+    </div>
+</body>
+</html>
+

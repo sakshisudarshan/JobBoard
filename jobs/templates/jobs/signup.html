@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f8f9fa;
+    }
+    .signup-container {
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    .signup-container h1 {
+        margin-bottom: 10px;
+        font-size: 32px;
+    }
+    .signup-container p {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    .signup-options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .signup-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .signup-option.active {
+        background-color: #f1f1f1;
+    }
+    .signup-option .icon {
+        font-size: 24px;
+    }
+    .signup-option .text {
+        flex: 1;
+        margin-left: 15px;
+        text-align: left;
+    }
+    .create-account {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: green;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .create-account:hover {
+        opacity: 0.8;
+    }
+</style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>How do you want to use JobBoard?</h1>
+        <p>We'll personalize your setup experience accordingly.</p>
+        <div class="signup-options">
+            <div class="signup-option" id="hireOption">
+                <div class="icon"><i class="fas fa-search"></i></div>
+                <div class="text">I'm here to hire talent</div>
+            </div>
+            <div class="signup-option" id="applyOption">
+                <div class="icon"><i class="fas fa-code"></i></div>
+                <div class="text">I'm here to apply for jobs</div>
+            </div>
+        </div>
+        <button class="create-account">Create account</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var hireOption = document.getElementById('hireOption');
+            var applyOption = document.getElementById('applyOption');
+            var createAccountBtn = document.querySelector('.create-account');
+   
+            function highlightOption(option) {
+                document.querySelectorAll('.signup-option').forEach(function(opt) {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+            }
+   
+            hireOption.addEventListener('click', function() {
+                highlightOption(hireOption);
+            });
+   
+            applyOption.addEventListener('click', function() {
+                highlightOption(applyOption);
+            });
+   
+            createAccountBtn.addEventListener('click', function() {
+                if (hireOption.classList.contains('active')) {
+                    window.location.href = '{% url "employer_signup" %}';
+                } else if (applyOption.classList.contains('active')) {
+                    window.location.href = '{% url "job_seeker_signup" %}';
+                } else {
+                    window.location.href = '{% url "signup" %}';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

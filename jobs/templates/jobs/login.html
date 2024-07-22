@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - JobBoard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .half {
+            flex: 1;
+            padding: 40px;
+            text-align: center;
+        }
+        .half h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .half p {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .half .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .half .button.secondary {
+            background-color: #6c757d;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="half">
+            <h2>For Companies</h2>
+            <p>Source Top Talent, Build Your Team</p>
+            <a href="{% url 'employer_login' %}" class="button">Login</a>
+            <p>Don't have an account? <a href="{% url 'employer_signup' %}">Sign up</a></p>
+        </div>
+        <div class="half">
+            <h2>For Job Seekers</h2>
+            <p>Unlock Your Next Great Hire with JobBoard!</p>
+            <a href="{% url 'job_seeker_login' %}" class="button secondary">Login</a>
+            <p>Don't have an account? <a href="{% url 'job_seeker_signup' %}">Sign up</a></p>
+        </div>
+    </div>
+    <footer>
+        <p>We use cookies to ensure you have the best browsing experience on our website. Please read our cookie policy for more information about how we use cookies.</p>
+    </footer>
+</body>
+</html>

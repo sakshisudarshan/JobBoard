@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Search Results - JobBoard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            color: #000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .logo {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .job-description {
+            margin: 20px;
+        }
+        .job-description h2 {
+            font-weight: bold;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .application {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .application h3 {
+            font-weight: bold;
+            font-size: 24px;
+            margin: 0;
+        }
+        .application p {
+            margin: 10px 0;
+        }
+        .application a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .application a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JobBoard</div>
+    </nav>
+
+    <div class="job-description">
+        <h2>Job Applications</h2>
+
+        {% for application in job_applications %}
+            <div class="application">
+                <h3>{{ application.job_title }}</h3>
+                <p>Description: {{ application.job_description }}</p>
+                <a href="{% url 'download_resume' application.id %}">Download Resume</a>
+            </div>
+        {% empty %}
+            <p>No applications found matching your criteria.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
